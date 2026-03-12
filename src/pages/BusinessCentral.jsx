@@ -32,7 +32,7 @@ export default function BusinessCentral() {
               <div className={`milestone-dot milestone-dot-${m.status}`} />
               <div className="milestone-content">
                 <h4>{m.id} — {m.name}</h4>
-                <p>Payment: {m.pct} of contract</p>
+
               </div>
               <div className="milestone-right">
                 <span className="milestone-date">{m.date}</span>
@@ -65,25 +65,6 @@ export default function BusinessCentral() {
               <tr><td><strong>Banking & Cash</strong></td><td>Automated daily bank reconciliation, BG/LC aging reports, daily balance emailers to management</td></tr>
               <tr><td><strong>CRM Integration</strong></td><td>OData REST API pages for all entities — Items, Customers, Stock, Sales Orders, Financials</td></tr>
               <tr><td><strong>Data Migration</strong></td><td>From Navision 2016 — data cleansing, standardization, trial loads, reconciliation</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="section">
-        <div className="section-title">💰 Commercial Details</div>
-        <div className="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Parameter</th><th>Details</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Vendor</strong></td><td>Transform Infotech, Mumbai — Shekhar Nadkar (Proprietor)</td></tr>
-              <tr><td><strong>Contract Value</strong></td><td>₹15,00,000 — Fixed, Lump Sum, All-Inclusive</td></tr>
-              <tr><td><strong>Travel Expenses</strong></td><td>Reimbursable up to ₹75,000 (with prior written approval)</td></tr>
-              <tr><td><strong>Post Go-Live Support</strong></td><td>₹1,250/hour (on written approval only)</td></tr>
-              <tr><td><strong>Penalty for Delay</strong></td><td>0.5% per week beyond April 1, 2026 — capped at 5% of contract</td></tr>
-              <tr><td><strong>Retention</strong></td><td>5% withheld per RA bill — released after 1-year defect liability period</td></tr>
             </tbody>
           </table>
         </div>

@@ -95,15 +95,33 @@ body {
   display: flex;
   flex-direction: column;
   transition: margin-left var(--transition);
+  min-width: 0;
 }
 
 .page-content {
   flex: 1;
   padding: 40px 48px;
   max-width: 980px;
+  min-width: 0;
 }
 
 /* ===== SIDEBAR ===== */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 13, 20, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.sidebar-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
@@ -117,11 +135,30 @@ body {
   z-index: 100;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: transform var(--transition);
 }
 
 .sidebar-logo {
   padding: 20px 20px 16px;
   border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+}
+
+.sidebar-close-btn {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 20px;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.sidebar-close-btn:hover {
+  color: var(--text-primary);
 }
 
 .sidebar-logo-badge {
@@ -235,6 +272,28 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.hamburger-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.hamburger-btn:hover {
+  background: var(--bg-hover);
 }
 
 .topbar-breadcrumb {
@@ -621,6 +680,7 @@ code {
   border: 1px solid var(--border-default);
   border-radius: var(--radius-md);
   transition: all var(--transition);
+  flex-wrap: wrap;
 }
 
 .milestone-item:hover { border-color: var(--border-strong); }
@@ -644,10 +704,10 @@ code {
   50% { box-shadow: 0 0 16px rgba(239,68,68,0.7); }
 }
 
-.milestone-content { flex: 1; }
+.milestone-content { flex: 1; min-width: 200px; }
 .milestone-content h4 { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 3px; }
 .milestone-content p  { font-size: 13px; color: var(--text-muted); }
-.milestone-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.milestone-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
 .milestone-date { font-size: 12px; color: var(--text-muted); }
 
 /* ===== HERO HOME ===== */
@@ -976,10 +1036,55 @@ ul.doc-list li::before {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
-  .sidebar { transform: translateX(-100%); }
+  .sidebar { 
+    transform: translateX(-100%);
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-overlay {
+    display: block;
+    pointer-events: none;
+  }
+  .sidebar-close-btn {
+    display: block;
+  }
+  .hamburger-btn {
+    display: block;
+  }
+  .topbar { padding: 0 24px; }
+  .topbar-meta > span { display: none; }
   .main-area { margin-left: 0; }
   .page-content { padding: 28px 24px; }
   .card-grid-2, .card-grid-3, .flow-grid { grid-template-columns: 1fr; }
   .home-hero { padding: 28px 24px; }
   .home-hero h1 { font-size: 26px; }
+  .milestone-right { align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .page-header h1 { font-size: 24px; }
+  .page-header p { font-size: 14.5px; }
+  .page-content { padding: 20px 16px; }
+  .topbar { padding: 0 16px; }
+  .topbar-breadcrumb { font-size: 12px; }
+  .home-hero { padding: 24px 20px; margin-bottom: 24px; }
+  .home-hero::before { display: none; } /* Hide decorative circle on small screens */
+  .ai-feature-grid, .quick-nav { grid-template-columns: 1fr; }
+  .section-title { font-size: 16px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .arch-diagram { padding: 20px 12px; }
+  .arch-diagram > div { flex-wrap: wrap; justify-content: center; text-align: center; }
+  .arch-diagram > div > div { flex-wrap: wrap; justify-content: center; }
+  
+  /* Make tables edge-to-edge so they don't get squished, user can scroll smoothly */
+  .table-wrap {
+    margin-left: -16px;
+    margin-right: -16px;
+    width: calc(100% + 32px);
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
 }

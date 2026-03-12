@@ -23,7 +23,7 @@ export default function SystemArchitecture() {
           </div>
 
           <div style={{display:'flex', flexDirection:'column', alignItems:'center', gap: 4}}>
-            <div style={{display:'flex', gap:40, fontSize:12, color:'var(--text-muted)'}}>
+            <div style={{display:'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center', textAlign: 'center', fontSize: 12, color:'var(--text-muted)'}}>
               <span>← ERP→CRM: Master Data, Stock, Financials</span>
               <span>CRM→ERP: Orders, Reservations, Quotes →</span>
             </div>

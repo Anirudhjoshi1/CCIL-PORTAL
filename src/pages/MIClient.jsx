@@ -82,25 +82,6 @@ export default function MIClient() {
       </div>
 
       <div className="section">
-        <div className="section-title">💰 Commercial Details</div>
-        <div className="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Parameter</th><th>Details</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><strong>Vendor</strong></td><td>MiClient Private Limited, Gurgaon</td></tr>
-              <tr><td><strong>Implementation Cost</strong></td><td>₹1,82,000 (one-time — configuration, training, go-live)</td></tr>
-              <tr><td><strong>Annual Subscription</strong></td><td>₹5,50,000 (50 users × ₹11,000 each) — exclusive of GST</td></tr>
-              <tr><td><strong>Total Contract Value</strong></td><td>₹7,32,000 + 18% GST = <strong>₹8,63,760</strong></td></tr>
-              <tr><td><strong>Advance Paid (40%)</strong></td><td>₹3,45,740 (PI #FY 25-26/0202 — November 7, 2025)</td></tr>
-              <tr><td><strong>Penalty for Delay</strong></td><td>0.5% per week — maximum 5% of milestone value</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="section">
         <div className="section-title">🔄 CPQ Workflow</div>
         <div className="flow-steps">
           {[

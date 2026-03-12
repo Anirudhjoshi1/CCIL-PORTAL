@@ -69,12 +69,12 @@ export default function Home() {
           <div className="card">
             <div className="card-icon">💼</div>
             <h3>MI Client CRM</h3>
-            <p>AI-enabled sales automation CRM by MiClient Pvt. Ltd. (Gurgaon). Phase 1 live — Phase 2 (ERP integration, AI, OCR) pending. Contract: ₹7,32,000 + GST.</p>
+            <p>AI-enabled sales automation CRM by MiClient Pvt. Ltd. (Gurgaon). Phase 1 live — Phase 2 (ERP integration, AI, OCR) pending.</p>
           </div>
           <div className="card">
             <div className="card-icon">🏢</div>
             <h3>ERP – Business Central</h3>
-            <p>Microsoft Dynamics 365 BC replacing legacy Navision 2016. Implemented by Transform Infotech (Mumbai). Contract: ₹15,00,000. Go-live: April 1, 2026.</p>
+            <p>Microsoft Dynamics 365 BC replacing legacy Navision 2016. Implemented by Transform Infotech (Mumbai). Go-live: April 1, 2026.</p>
           </div>
           <div className="card">
             <div className="card-icon">🔌</div>

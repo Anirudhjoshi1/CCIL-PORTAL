@@ -40,7 +40,6 @@ export default function ProjectOverview() {
                 <th>Project</th>
                 <th>System</th>
                 <th>Vendor</th>
-                <th>Contract Value</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -49,14 +48,12 @@ export default function ProjectOverview() {
                 <td><strong>ERP Implementation</strong></td>
                 <td>Microsoft Dynamics 365 Business Central</td>
                 <td>Transform Infotech, Mumbai</td>
-                <td>₹15,00,000 (Fixed)</td>
                 <td><span className="badge badge-warning">In Progress</span></td>
               </tr>
               <tr>
                 <td><strong>CRM Implementation</strong></td>
                 <td>MiClient CRM (AI-Enabled)</td>
                 <td>MiClient Pvt. Ltd., Gurgaon</td>
-                <td>₹7,32,000 + GST</td>
                 <td><span className="badge badge-warning">Phase 1 Done, Phase 2 Pending</span></td>
               </tr>
             </tbody>

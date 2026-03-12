@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route, NavLink, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import ProjectOverview from './pages/ProjectOverview'
@@ -23,75 +24,86 @@ const NAV = [
   { path: '/future-development', label: 'Future Development', icon: '🚀', section: 'status' },
 ]
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
   return (
-    <aside className="sidebar">
-      <div className="sidebar-logo">
-        <div className="sidebar-logo-badge">
-          <span>CCIL Docs</span>
+    <>
+      <div className={`sidebar-overlay ${isOpen ? 'open' : ''}`} onClick={onClose} />
+      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-logo">
+          <div className="sidebar-logo-badge">
+            <span>CCIL Docs</span>
+          </div>
+          <h2>CCIL Technical Portal</h2>
+          <p>Digital Transformation 2026</p>
+          <button className="sidebar-close-btn" onClick={onClose} aria-label="Close menu">
+            ✕
+          </button>
         </div>
-        <h2>CCIL Technical Portal</h2>
-        <p>Digital Transformation 2026</p>
-      </div>
 
-      <div className="sidebar-section">
-        <div className="sidebar-section-label">Navigation</div>
-        <ul className="sidebar-nav">
-          {NAV.filter(n => n.section === 'main').map(item => (
-            <li key={item.path}>
-              <NavLink to={item.path} end className={({ isActive }) => isActive ? 'active' : ''}>
-                <span className="nav-icon">{item.icon}</span>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="sidebar-section">
+          <div className="sidebar-section-label">Navigation</div>
+          <ul className="sidebar-nav">
+            {NAV.filter(n => n.section === 'main').map(item => (
+              <li key={item.path}>
+                <NavLink to={item.path} end className={({ isActive }) => isActive ? 'active' : ''} onClick={onClose}>
+                  <span className="nav-icon">{item.icon}</span>
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="sidebar-section">
-        <div className="sidebar-section-label">Documentation</div>
-        <ul className="sidebar-nav">
-          {NAV.filter(n => n.section === 'docs').map(item => (
-            <li key={item.path}>
-              <NavLink to={item.path} className={({ isActive }) => isActive ? 'active' : ''}>
-                <span className="nav-icon">{item.icon}</span>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="sidebar-section">
+          <div className="sidebar-section-label">Documentation</div>
+          <ul className="sidebar-nav">
+            {NAV.filter(n => n.section === 'docs').map(item => (
+              <li key={item.path}>
+                <NavLink to={item.path} className={({ isActive }) => isActive ? 'active' : ''} onClick={onClose}>
+                  <span className="nav-icon">{item.icon}</span>
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="sidebar-section">
-        <div className="sidebar-section-label">Status & Roadmap</div>
-        <ul className="sidebar-nav">
-          {NAV.filter(n => n.section === 'status').map(item => (
-            <li key={item.path}>
-              <NavLink to={item.path} className={({ isActive }) => isActive ? 'active' : ''}>
-                <span className="nav-icon">{item.icon}</span>
-                {item.label}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="sidebar-section">
+          <div className="sidebar-section-label">Status & Roadmap</div>
+          <ul className="sidebar-nav">
+            {NAV.filter(n => n.section === 'status').map(item => (
+              <li key={item.path}>
+                <NavLink to={item.path} className={({ isActive }) => isActive ? 'active' : ''} onClick={onClose}>
+                  <span className="nav-icon">{item.icon}</span>
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="sidebar-footer">
-        <p>Prepared by Anirudh<br />Under supervision of Dr. Pal<br />March 2026 · Confidential</p>
-      </div>
-    </aside>
+        <div className="sidebar-footer">
+          <p>Prepared by Anirudh<br />Under supervision of Dr. Pal<br />March 2026 · Confidential</p>
+        </div>
+      </aside>
+    </>
   )
 }
 
-function TopBar() {
+function TopBar({ onMenuClick }) {
   const location = useLocation()
   const current = NAV.find(n => n.path === location.pathname) || NAV[0]
   return (
     <header className="topbar">
-      <div className="topbar-breadcrumb">
-        <span>CCIL</span>
-        <span className="sep">/</span>
-        <span className="current">{current?.label}</span>
+      <div className="topbar-left">
+        <button className="hamburger-btn" onClick={onMenuClick} aria-label="Open menu">
+          ☰
+        </button>
+        <div className="topbar-breadcrumb">
+          <span>CCIL</span>
+          <span className="sep">/</span>
+          <span className="current">{current?.label}</span>
+        </div>
       </div>
       <div className="topbar-meta">
         <span>Version 1.0 · March 2026</span>
@@ -105,11 +117,15 @@ function TopBar() {
 }
 
 function Layout({ children }) {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const toggleMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+  const closeMenu = () => setIsMobileMenuOpen(false)
+
   return (
     <div className="app-layout">
-      <Sidebar />
+      <Sidebar isOpen={isMobileMenuOpen} onClose={closeMenu} />
       <div className="main-area">
-        <TopBar />
+        <TopBar onMenuClick={toggleMenu} />
         <div className="page-content">
           {children}
         </div>
